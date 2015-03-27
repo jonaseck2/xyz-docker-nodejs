@@ -2,10 +2,9 @@ extends layout
 
 block content
     div
-        img(src= "http://www.softhouse.se/wp-content/uploads/2014/09/softhouse_logotyp.png")
-
-
-    div
-        form(method="post", enctype="multipart/form-data")
+        form(method="post", enctype="multipart/form-data", action="/admin")
             input(type="file", name="displayImage")
+            input(type="text", name="name", placeholder="name")
+            input(type="text", name="category", placeholder="Category")
+            input(type="text", name="subCategory", placeholder="Sub category")
             button Post
