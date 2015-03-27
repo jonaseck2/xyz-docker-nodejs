@@ -15,4 +15,4 @@ WORKDIR /app
 # will make sure Nginx redirects to this port. 
 EXPOSE 9000
 
-CMD node /app/server/server.js
+CMD node /app/bin/www
