@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
-  console.log('Posting file')
-  console.log(req.files)
+  console.log('Posting file');
+  console.log(req.files.displayImage.buffer.toString('base64'));
   res.render('admin', { title: 'Softhouse - Upload', page: 'Admin page' });
 });
 
