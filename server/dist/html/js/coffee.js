@@ -49,9 +49,9 @@ coffeeApp.factory('Competence', function ($resource) {
 });
 
 coffeeApp.controller('UserController', function ($scope, Competence) {
-    $scope.allCompetence = [];
+    //$scope.allCompetence = [];
 
-    //$scope.allCompetence = Competence.query();
+    $scope.allCompetence = Competence.query();
 
     $scope.toggleSelected = function (competence) {
         if (competence.selected) {
