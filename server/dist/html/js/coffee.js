@@ -44,30 +44,32 @@ coffeeApp.factory('GetUsers', function ($resource) {
     return $resource('/service/coffeeshop/getusers/', {} );
 });
 
-coffeeApp.controller('UserController', function ($scope, AddUser, CoffeeOrder, GetUsers, RemoveUser) {
-    $scope.allUsers = GetUsers.query();
+coffeeApp.factory('Competence', function ($resource) {
+    return $resource('localhost:3232/api/', {} );
+});
 
-    $scope.toggleSelected = function (user) {
-        if (user.selected) {
-            user.class = "";
-            user.selected = false;
+coffeeApp.controller('UserController', function ($scope, Competence) {
+    $scope.allCompetence = [];
+
+    //$scope.allCompetence = Competence.query();
+
+    $scope.toggleSelected = function (competence) {
+        if (competence.selected) {
+            competence.class = "";
+            competence.selected = false;
         } else {
-            user.class = "info";
-            user.selected = true;
+            competence.class = "info";
+            competence.selected = true;
         }
     };
 
-    $scope.addUser = function () {
-        AddUser.save($scope.user,
-            function (user) {
-                $scope.allUsers = GetUsers.query();
-                $scope.messages.push({type: 'success', msg: 'User added!'})
-            }
-        )
+    $scope.addCompetence = function () {
+        $scope.allCompetence.push(angular.copy($scope.competence));
+        $scope.competence = {};
     };
 
-    $scope.removeUser = function () {
-        angular.forEach($scope.allUsers, function (user) {
+    $scope.removeCompetence = function () {
+        angular.forEach($scope.allCompetence, function (user) {
             if (user.selected) {
                 RemoveUser.save(user,
                     function (user) {
@@ -77,6 +79,10 @@ coffeeApp.controller('UserController', function ($scope, AddUser, CoffeeOrder, G
             }
         })
     };
+
+    $scope.submitData = function () {
+        Competence.save($scope.allCompetence);
+    }
 
     $scope.messages = [];
 
