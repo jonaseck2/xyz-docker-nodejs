@@ -68,9 +68,7 @@
         render: function() {
           var voteNodes = this.props.data.map(function (vote) {
             return (
-              <Vote userEmail={vote.userEmail}>
-                {vote.vote}
-              </Vote>
+              <Vote userEmail={vote.userEmail} vote={vote.vote} key={vote.userEmail} />
             );
           });
           return (
@@ -120,8 +118,8 @@
               return;
             }
 
-            this.props.onVoteSubmit({userEmail: userEmail.email, vote: vote});
-            React.findDOMNode(btnVote ).disabled = 'disabled';
+            this.props.onVoteSubmit({userEmail: userEmail.email, vote: vote, survey: 'xyz-name'});
+            //React.findDOMNode(btnVote).disabled = 'disabled';
           }
 
           return;
@@ -144,9 +142,7 @@
         render: function() {
           return (
             <div className="vote">
-              <h2 className="voteUserEmail">
-                {this.props.userEmail}
-              </h2>
+              {this.props.userEmail} - <strong className="voteUserEmail"> {this.props.vote} </strong>
             </div>
           );
         }
