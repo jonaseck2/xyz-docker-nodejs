@@ -4,15 +4,6 @@
     <title>Hello React</title>
     <!-- Not present in the tutorial. Just for basic styling. -->
     <link rel="stylesheet" href="css/base.css" />
-    <style>
-        div {
-            border: 1px solid black;
-        }
-
-        .voteBox {
-            border: 1px solid yellow;
-        }
-    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -66,9 +57,9 @@
         render: function() {
           return (
             <div className="voteBox">
+              <VoteForm onVoteSubmit={this.handleVoteSubmit} />
               <h1>Votes</h1>
               <VoteList data={this.state.data} />
-              <VoteForm onVoteSubmit={this.handleVoteSubmit} />
             </div>
           );
         }
@@ -89,6 +80,20 @@
           );
         }
       });
+      var VoteFormRadio = React.createClass({
+        render: function () {
+          return (
+            <span>
+              <input
+                  type="radio"
+                  name="vote"
+                  defaultValue={this.props.value}
+                  onChange={this.props.onChange} />
+                {this.props.value}<br />
+            </span>
+          );
+        }
+      });
       var VoteForm = React.createClass({
         getUserEmail: function (callback) {
           $.ajax({
@@ -105,9 +110,9 @@
           e.preventDefault();
           var vote = this.state.vote;
           var that = this;
-          var post_btn = this.refs.post_btn;
+          var btnVote = this.refs.btnVote ;
           this.getUserEmail(function (data) {
-              gotEmail.call(this, data, vote);
+            gotEmail.call(this, data, vote);
           });
 
           function gotEmail(userEmail, vote) {
@@ -116,7 +121,7 @@
             }
 
             this.props.onVoteSubmit({userEmail: userEmail.email, vote: vote});
-            React.findDOMNode(post_btn).disabled = 'disabled';
+            React.findDOMNode(btnVote ).disabled = 'disabled';
           }
 
           return;
@@ -127,11 +132,10 @@
         render: function() {
           return (
             <form className="voteForm" onSubmit={this.handleSubmit}>
-              <input type="radio" name="vote" defaultValue="Adam" onChange={this.handleChange} /> Adam
-              <input type="radio" name="vote" defaultValue="Ben" onChange={this.handleChange} /> Ben
-              <input type="radio" name="vote" defaultValue="Caesar" onChange={this.handleChange} /> Caesar
-              <input type="radio" name="vote" defaultValue="David" onChange={this.handleChange} /> David
-              <input type="submit" value="Post" ref="post_btn" />
+              <VoteFormRadio value="Adam" onChange={this.handleChange} />
+              <VoteFormRadio value="Ben" onChange={this.handleChange} />
+              <VoteFormRadio value="Caesar" onChange={this.handleChange} />
+              <input type="submit" value="Vote" ref="btnVote" />
             </form>
           );
         }
