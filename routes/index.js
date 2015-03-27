@@ -4,8 +4,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var API = 'http://';
-
     var options = {
         host: 'localhost',
         port: 3232,
@@ -25,7 +23,6 @@ router.get('/', function(req, res, next) {
         });
     });
 });
-
 
 module.exports = router;
 
