@@ -1,0 +1,10 @@
+a p.list {
+    color: #8d8d8d;
+    font-size: 16px;
+}
+
+a p.list:hover {
+    color: #ea661f;
+    font-size: 16px;
+    cursor: pointer;
+}
