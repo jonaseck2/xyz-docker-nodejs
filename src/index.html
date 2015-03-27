@@ -9,7 +9,7 @@
             border: 1px solid black;
         }
 
-        .commentBox {
+        .voteBox {
             border: 1px solid yellow;
         }
     </style>
@@ -21,8 +21,8 @@
   <body>
     <div id="content"></div>
     <script type="text/jsx">
-      var CommentBox = React.createClass({
-        loadCommentsFromServer: function() {
+      var VoteBox = React.createClass({
+        loadVotesFromServer: function() {
           $.ajax({
             url: this.props.url,
             dataType: 'json',
@@ -34,16 +34,19 @@
             }.bind(this)
           });
         },
-        handleCommentSubmit: function(comment) {
-          var comments = this.state.data;
-          var newComments = comments.concat([comment]);
-          this.setState({data: newComments});
+        handleVoteSubmit: function(vote) {
+          var votes = this.state.data;
+          var newVotes = votes.concat([vote]);
+          this.setState({data: newVotes});
+
+          //TODO remove
+          return;
 
           $.ajax({
             url: this.props.url,
             dataType: 'json',
             type: 'POST',
-            data: comment,
+            data: vote,
             success: function(data) {
               this.setState({data:data});
             }.bind(this),
@@ -56,76 +59,96 @@
           return {data: []};
         },
         componentDidMount: function() {
-          this.loadCommentsFromServer();
-          setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+          // TODO re-enable
+          //this.loadVotesFromServer();
+          //setInterval(this.loadVotesFromServer, this.props.pollInterval);
         },
         render: function() {
           return (
-            <div className="commentBox">
-              <h1>Comments</h1>
-              <CommentList data={this.state.data} />
-              <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+            <div className="voteBox">
+              <h1>Votes</h1>
+              <VoteList data={this.state.data} />
+              <VoteForm onVoteSubmit={this.handleVoteSubmit} />
             </div>
           );
         }
       });
-      var CommentList = React.createClass({
+      var VoteList = React.createClass({
         render: function() {
-          var commentNodes = this.props.data.map(function (comment) {
+          var voteNodes = this.props.data.map(function (vote) {
             return (
-              <Comment author={comment.author}>
-                {comment.text}
-              </Comment>
+              <Vote userEmail={vote.userEmail}>
+                {vote.vote}
+              </Vote>
             );
           });
           return (
-            <div className="commentList">
-              {commentNodes}
+            <div className="voteList">
+              {voteNodes}
             </div>
           );
         }
       });
-      var CommentForm = React.createClass({
+      var VoteForm = React.createClass({
+        getUserEmail: function (callback) {
+          $.ajax({
+            url: 'userEmail',
+            dataType: 'json',
+            type: 'GET',
+            success: callback.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+        },
         handleSubmit: function(e) {
           e.preventDefault();
-          var author = React.findDOMNode(this.refs.author).value.trim();
-          var text = React.findDOMNode(this.refs.text).value.trim();
+          var vote = this.state.vote;
+          var that = this;
+          var post_btn = this.refs.post_btn;
+          this.getUserEmail(function (data) {
+              gotEmail.call(this, data, vote);
+          });
 
-          if (!author || !text) {
-            return;
+          function gotEmail(userEmail, vote) {
+            if (!userEmail || !vote) {
+              return;
+            }
+
+            this.props.onVoteSubmit({userEmail: userEmail.email, vote: vote});
+            React.findDOMNode(post_btn).disabled = 'disabled';
           }
 
-          this.props.onCommentSubmit({author: author, text: text});
-          React.findDOMNode(this.refs.author).value = '';
-          React.findDOMNode(this.refs.text).value = '';
           return;
+        },
+        handleChange: function(e) {
+          this.setState({vote: e.target.value});
         },
         render: function() {
           return (
-            <form className="commentForm" onSubmit={this.handleSubmit}>
-              <input type="text" placeholder="Your name" ref="author" />
-              <input type="text" placeholder="Say something..." ref="text" />
-              <input type="submit" value="Post" />
+            <form className="voteForm" onSubmit={this.handleSubmit}>
+              <input type="radio" name="vote" defaultValue="Adam" onChange={this.handleChange} /> Adam
+              <input type="radio" name="vote" defaultValue="Ben" onChange={this.handleChange} /> Ben
+              <input type="radio" name="vote" defaultValue="Caesar" onChange={this.handleChange} /> Caesar
+              <input type="radio" name="vote" defaultValue="David" onChange={this.handleChange} /> David
+              <input type="submit" value="Post" ref="post_btn" />
             </form>
           );
         }
       });
-      var converter = new Showdown.converter();
-      var Comment = React.createClass({
+      var Vote = React.createClass({
         render: function() {
-          var rawMarkup = converter.makeHtml(this.props.children.toString());
           return (
-            <div className="comment">
-              <h2 className="commentAuthor">
-                {this.props.author}
+            <div className="vote">
+              <h2 className="voteUserEmail">
+                {this.props.userEmail}
               </h2>
-              <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
             </div>
           );
         }
       });
       React.render(
-        <CommentBox url="comments.json" pollInterval={2000} />,
+        <VoteBox url="votes.json" pollInterval={2000} />,
         document.getElementById('content')
       ); 
     </script>
