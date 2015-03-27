@@ -61,10 +61,14 @@
     </div>
 
     <div class="form-group">
-        <input ng-click="submitData()" type="button" class="btn btn-primary btn-lg" value="Submit"/>
+        <input ng-click="submitData()" type="button" class="btn btn-primary btn-lg pull-right" value="Submit"/>
     </div>
 
-    <pre>{{allCompetence | json}}</pre>
+    <div class="form-group">
+        <input ng-click="window.location=/exportcv" type="button" class="btn btn-primary btn-lg pull-right" value="Export to CV"/>
+    </div>
+
+    <!-- <pre>{{allCompetence | json}}</pre> -->
 </div>
 
 <script type="text/javascript" src="js/angular.min.js"></script>

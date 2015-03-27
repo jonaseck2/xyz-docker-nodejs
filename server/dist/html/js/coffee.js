@@ -45,7 +45,7 @@ coffeeApp.factory('GetUsers', function ($resource) {
 });
 
 coffeeApp.factory('Competence', function ($resource) {
-    return $resource('localhost:3232/api/', {} );
+    return $resource('/api/competence/', {} );
 });
 
 coffeeApp.controller('UserController', function ($scope, Competence) {

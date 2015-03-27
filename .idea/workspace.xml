@@ -4,6 +4,7 @@
     <list default="true" id="6e8808e0-29c2-4a31-b15e-53df3f8f4846" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/dist/html/js/coffee.js" afterPath="$PROJECT_DIR$/server/dist/html/js/coffee.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/dist/html/compentence.html" afterPath="$PROJECT_DIR$/server/dist/html/compentence.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="xyz-competence.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,8 +30,8 @@
       <file leaf-file-name="compentence.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/dist/html/compentence.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.423077" vertical-offset="669" max-vertical-offset="1360">
-              <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+            <state vertical-scroll-proportion="-25.923077" vertical-offset="278" max-vertical-offset="1428">
+              <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -39,8 +40,8 @@
       <file leaf-file-name="coffee.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/dist/html/js/coffee.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6680614" vertical-offset="592" max-vertical-offset="1666">
-              <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.28870293" vertical-offset="592" max-vertical-offset="1666">
+              <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -415,16 +416,16 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/server/dist/html/compentence.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.423077" vertical-offset="669" max-vertical-offset="1360">
-          <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+        <state vertical-scroll-proportion="-25.923077" vertical-offset="278" max-vertical-offset="1428">
+          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/dist/html/js/coffee.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6680614" vertical-offset="592" max-vertical-offset="1666">
-          <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.28870293" vertical-offset="592" max-vertical-offset="1666">
+          <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
           <folding />
         </state>
       </provider>
