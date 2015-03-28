@@ -1,12 +1,12 @@
 var competenceApp = angular.module('competenceApp', ['ngResource', 'ui.bootstrap']);
 
 competenceApp.factory('Competence', function ($resource) {
-    return $resource('/api/competence/', {} );
+    return $resource('/api/competence/', {}, {
+        put: {method:'PUT'}
+    });
 });
 
 competenceApp.controller('CompetenceController', function ($scope, Competence) {
-    //$scope.allCompetence = [];
-
     $scope.allCompetence = Competence.query();
 
     $scope.toggleSelected = function (competence) {
@@ -34,7 +34,7 @@ competenceApp.controller('CompetenceController', function ($scope, Competence) {
     };
 
     $scope.submitData = function () {
-        Competence.save($scope.allCompetence);
+        Competence.put($scope.allCompetence);
     }
 
     $scope.messages = [];
