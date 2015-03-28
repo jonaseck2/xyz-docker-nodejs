@@ -1,9 +1,8 @@
 var competenceApp = angular.module('competenceApp', ['ngResource', 'ui.bootstrap']);
 
 competenceApp.factory('Competence', function ($resource) {
-    return $resource('/api/competence/me', {}, {
-        put: {method:'PUT'}
-    });
+    return $resource('/api/competence/:id', {});
+    //return $resource('http://localhost:3232/competence/:id', {});
 });
 
 competenceApp.controller('CompetenceController', function ($scope, Competence) {
@@ -20,22 +19,22 @@ competenceApp.controller('CompetenceController', function ($scope, Competence) {
     };
 
     $scope.addCompetence = function () {
-        $scope.allCompetence.push(angular.copy($scope.competence));
-        $scope.competence = {};
-    };
-
-    $scope.removeCompetence = function () {
-        angular.forEach($scope.allCompetence, function (competence, index) {
-            if (competence.selected === true) {
-                $scope.allCompetence.splice(index, 1);
-            }
+        Competence.save($scope.competence, function () {
+            $scope.competence = {};
+            $scope.allCompetence = Competence.query();
+            //$scope.messages.push({type: 'success', msg: 'Competence added!'});
         })
     };
 
-    $scope.submitData = function () {
-        Competence.put($scope.allCompetence);
-        $scope.messages.push({type: 'success', msg: 'Competence Submitted!'});
-    }
+    $scope.removeCompetence = function () {
+        angular.forEach($scope.allCompetence, function (competence) {
+            if (competence.selected === true) {
+                Competence.remove({id:competence._id}, function () {
+                    $scope.allCompetence = Competence.query();
+                });
+            }
+        })
+    };
 
     $scope.messages = [];
 
