@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="coffeeApp">
+<html lang="en" ng-app="competenceApp">
 <head>
     <title>Competence app</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="container" ng-controller="UserController">
+<div class="container" ng-controller="CompetenceController">
 
     <alert ng-repeat="message in messages" type="message.type" close="closeAlert($index)">
         {{message.msg}}
@@ -56,7 +56,7 @@
             </tr>
         </table>
         <div class="form-group">
-            <input ng-click="removeUser()" type="button" class="btn btn-primary" value="Remove competence"/>
+            <input ng-click="removeCompetence()" type="button" class="btn btn-primary" value="Remove competence"/>
         </div>
     </div>
 
@@ -72,7 +72,7 @@
 </div>
 
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/coffee.js"></script>
+<script type="text/javascript" src="js/competence.js"></script>
 <script type="text/javascript" src="js/angular-resource.min.js"></script>
 <script type="text/javascript" src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
 </body>

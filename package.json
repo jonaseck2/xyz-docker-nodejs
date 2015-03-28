@@ -1,5 +1,5 @@
 { 
-	"name" : "xyz-nodejs",
+	"name" : "xyz-competence",
 	"dependencies" : { 
 		"express": "^4.4.5"
 	},
