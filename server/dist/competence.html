@@ -9,10 +9,6 @@
 
 <div class="container" ng-controller="CompetenceController">
 
-    <alert ng-repeat="message in messages" type="message.type" close="closeAlert($index)">
-        {{message.msg}}
-    </alert>
-
     <div class="page-header">
         <h2>Add competence</h2>
     </div>
@@ -37,6 +33,10 @@
 
     </form>
 
+    <alert ng-repeat="message in messages" type="message.type" close="closeAlert($index)">
+        {{message.msg}}
+    </alert>
+
     <div class="form-group">
         <div class="page-header">
             <h2>Competence</h2>
@@ -56,16 +56,16 @@
             </tr>
         </table>
         <div class="form-group">
-            <input ng-click="removeCompetence()" type="button" class="btn btn-primary" value="Remove competence"/>
+            <input ng-click="editCompetence()" type="button" class="btn btn-primary pull-left" value="Edit selected"/>
+            <input ng-click="removeCompetence()" type="button" class="btn btn-primary pull-right" value="Remove selected"/>
         </div>
     </div>
 
-    <div class="form-group">
-        <input ng-click="submitData()" type="button" class="btn btn-primary btn-lg pull-right" value="Submit"/>
-    </div>
+    <p class="clearfix"></p>
 
     <div class="form-group">
-        <input ng-click="window.location=/exportcv" type="button" class="btn btn-primary btn-lg pull-right" value="Export to CV"/>
+        <input ng-click="submitData()" type="button" class="btn btn-primary btn-lg pull-right" value="Submit"/>
+        <input ng-click="window.location=/exportcv" type="button" class="btn btn-primary btn-lg pull-left" value="Export to CV"/>
     </div>
 
     <!-- <pre>{{allCompetence | json}}</pre> -->

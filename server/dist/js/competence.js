@@ -25,8 +25,11 @@ competenceApp.controller('CompetenceController', function ($scope, Competence) {
     };
 
     $scope.removeCompetence = function () {
-        angular.forEach($scope.allCompetence, function (competence) {
-            $scope.messages.push({type: 'warning', msg: 'Competence removed!'})
+        angular.forEach($scope.allCompetence, function (competence, index) {
+            if (competence.selected === true) {
+                $scope.allCompetence.splice(index, 1);
+                $scope.messages.push({type: 'warning', msg: 'Competence removed!'});
+            }
         })
     };
 
