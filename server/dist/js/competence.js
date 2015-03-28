@@ -1,7 +1,7 @@
 var competenceApp = angular.module('competenceApp', ['ngResource', 'ui.bootstrap']);
 
 competenceApp.factory('Competence', function ($resource) {
-    return $resource('/api/competence/', {}, {
+    return $resource('/api/competence/me', {}, {
         put: {method:'PUT'}
     });
 });
@@ -28,13 +28,13 @@ competenceApp.controller('CompetenceController', function ($scope, Competence) {
         angular.forEach($scope.allCompetence, function (competence, index) {
             if (competence.selected === true) {
                 $scope.allCompetence.splice(index, 1);
-                $scope.messages.push({type: 'warning', msg: 'Competence removed!'});
             }
         })
     };
 
     $scope.submitData = function () {
         Competence.put($scope.allCompetence);
+        $scope.messages.push({type: 'success', msg: 'Competence Submitted!'});
     }
 
     $scope.messages = [];
