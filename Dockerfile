@@ -8,6 +8,9 @@ RUN cd /app && npm install --production
 # Add the rest of the project to a folder app in the container.
 ADD . /app
 
+# Add configuration file for the api url
+ADD server/conf/api-url-prod.js /app/server/dist/js/app-url.js
+
 # Set working directory for the app:
 WORKDIR /app
 

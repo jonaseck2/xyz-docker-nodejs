@@ -1,8 +1,8 @@
 var competenceApp = angular.module('competenceApp', ['ngResource', 'ui.bootstrap']);
 
-competenceApp.factory('Competence', function ($resource) {
+competenceApp.factory('Competence', function ($resource, $http) {
+    if (typeof(apiUrl) != "undefined") return $resource(apiUrl+'/competence/:id', {});
     return $resource('/api/competence/:id', {});
-    //return $resource('http://localhost:3232/competence/:id', {});
 });
 
 competenceApp.controller('CompetenceController', function ($scope, Competence) {
