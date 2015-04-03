@@ -5,7 +5,12 @@ competenceApp.factory('Competence', function ($resource, $http) {
     return $resource('/api/competence/:id', {});
 });
 
-competenceApp.controller('CompetenceController', function ($scope, Competence) {
+competenceApp.factory('SkillList', function ($resource, $http) {
+    if (typeof(apiUrl) != "undefined") return $resource(apiUrl+'/skillList/:id', {});
+    return $resource('/api/skillList/:id', {});
+});
+
+competenceApp.controller('CompetenceController', function ($scope, Competence, SkillList) {
     $scope.allCompetence = Competence.query();
 
     $scope.toggleSelected = function (competence) {
@@ -20,10 +25,12 @@ competenceApp.controller('CompetenceController', function ($scope, Competence) {
 
     $scope.addCompetence = function () {
         Competence.save($scope.competence, function () {
+            var skill = { name: $scope.competence.skill, category: $scope.competence.category}
+            SkillList.save(skill);
             $scope.competence = {};
             $scope.allCompetence = Competence.query();
             //$scope.messages.push({type: 'success', msg: 'Competence added!'});
-        })
+        });
     };
 
     $scope.removeCompetence = function () {
