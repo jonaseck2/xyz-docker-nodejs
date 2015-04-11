@@ -1,4 +1,4 @@
-var competenceApp = angular.module('competenceApp', ['ngResource', 'ui.bootstrap']);
+var competenceApp = angular.module('competenceApp', ['ngResource', 'ui.bootstrap', 'ui.unique']);
 
 competenceApp.factory('Competence', function ($resource, $http) {
     if (typeof(apiUrl) != "undefined") return $resource(apiUrl+'/competence/:id', {});
@@ -12,6 +12,13 @@ competenceApp.factory('SkillList', function ($resource, $http) {
 
 competenceApp.controller('CompetenceController', function ($scope, Competence, SkillList) {
     $scope.allCompetence = Competence.query();
+    $scope.skills = SkillList.query();
+    $scope.competence = {category: "Programming"};
+    $scope.skillLevels = ['Beginner', 'Familiar', 'Proficient', 'Expert', 'Master'];
+
+    $scope.setSkill = function (skill) {
+        $scope.competence.skill = skill;
+    }
 
     $scope.toggleSelected = function (competence) {
         if (competence.selected) {
