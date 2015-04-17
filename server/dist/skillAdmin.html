@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="skillApp">
+<head>
+    <title>Skill Admin</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+<div class="container" ng-controller="SkillController">
+
+    <div class="page-header">
+        <h2>Add Skill</h2>
+    </div>
+
+    <form ng-submit="addSkill()">
+
+        <div class="form-group">
+            <label>Category</label>
+            <div class="clearfix">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                        <input type="text" ng-model="skillCategory" ng-required="true" class="form-control"/>
+                    </a>
+                    <ul class="dropdown-menu col-xs-12">
+                        <li ng-repeat="skill in allSkills | unique:'category'">
+                            <a href="#" ng-click="getMyCtrlScope().skillCategory = skill.category">{{ skill.category }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Skill</label>
+            <input type="text" ng-model="skillName" ng-required="true" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Add skill"/>
+        </div>
+
+    </form>
+
+    <alert ng-repeat="message in messages" type="message.type" close="closeAlert($index)">
+        {{message.msg}}
+    </alert>
+
+    <div class="form-group">
+        <div class="page-header">
+            <h2>Skills</h2>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Skill</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="skill in allSkills track by $index" ng-click="toggleSelected(skill)" ng-class="skill.class">
+                <td>{{ skill.category }}</td>
+                <td>{{ skill.name }}</td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <input ng-click="removeAllSkills()" type="button" class="btn btn-primary pull-left" value="Remove all skills"/>
+            <input ng-click="addDefaultSkills()" type="button" class="btn btn-primary pull-left" value="Add default skills"/>
+            <input ng-click="removeSkills()" type="button" class="btn btn-primary pull-right" value="Remove selected"/>
+        </div>
+    </div>
+
+    <p class="clearfix"></p>
+
+    <div class="form-group">
+
+        <!-- <input type="button" class="btn btn-primary btn-lg pull-left" value="Export to CV"/> -->
+    </div>
+
+    <!-- <pre>{{allCompetence | json}}</pre> -->
+</div>
+
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/api-url.js"></script>
+<script type="text/javascript" src="js/skill.js"></script>
+<script type="text/javascript" src="js/angular-resource.min.js"></script>
+<script type="text/javascript" src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+<script type="text/javascript" src="js/ui-utils.js"></script>
+</body>
+</html>

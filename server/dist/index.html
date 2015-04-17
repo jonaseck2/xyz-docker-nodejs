@@ -24,7 +24,7 @@
                     </a>
                     <ul class="dropdown-menu col-xs-12">
                         <li ng-repeat="skill in skills | unique:'category'">
-                            <a href="#" ng-click="competence.category = skill.category">{{ skill.category }}</a>
+                            <a href="#" ng-click="getMyCtrlScope().competence.category = skill.category">{{ skill.category }}</a>
                         </li>
                     </ul>
                 </div>

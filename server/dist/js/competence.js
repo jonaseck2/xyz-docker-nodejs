@@ -13,8 +13,12 @@ competenceApp.factory('SkillList', function ($resource, $http) {
 competenceApp.controller('CompetenceController', function ($scope, Competence, SkillList) {
     $scope.allCompetence = Competence.query();
     $scope.skills = SkillList.query();
-    $scope.competence = {category: "Programming"};
+    $scope.competence = {category: "Programming Language"};
     $scope.skillLevels = ['Beginner', 'Familiar', 'Proficient', 'Expert', 'Master'];
+
+    $scope.getMyCtrlScope = function() {
+        return $scope;
+    }
 
     $scope.setSkill = function (skill) {
         $scope.competence.skill = skill;
