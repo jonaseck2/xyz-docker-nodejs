@@ -38,7 +38,7 @@ competenceApp.controller('CompetenceController', function ($scope, Competence, S
         Competence.save($scope.competence, function () {
             var skill = { name: $scope.competence.skill, category: $scope.competence.category}
             SkillList.save(skill);
-            $scope.competence = {};
+            $scope.competence = {category: $scope.competence.category};
             $scope.allCompetence = Competence.query();
             //$scope.messages.push({type: 'success', msg: 'Competence added!'});
         });
