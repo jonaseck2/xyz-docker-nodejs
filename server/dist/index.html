@@ -38,7 +38,7 @@
                         <input type="text" ng-model="competence.skill" ng-required="true" class="form-control"/>
                     </a>
                     <ul class="dropdown-menu col-xs-12">
-                        <li ng-repeat="skill in skills | filter:competence.category | filter:competence.skill">
+                        <li ng-repeat="skill in skills | filter:competence.category | unique:'name' | filter:competence.skill">
                             <a href="#" ng-click="competence.skill = skill.name">{{ skill.name }}</a>
                         </li>
                     </ul>
