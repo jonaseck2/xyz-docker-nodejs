@@ -54,6 +54,14 @@ competenceApp.controller('CompetenceController', function ($scope, Competence, S
         })
     };
 
+    $scope.categoryToggled = function (open) {
+        document.getElementById("categoryInput").focus();
+    }
+
+    $scope.skillToggled = function (open) {
+        document.getElementById("skillInput").focus();
+    }
+
     $scope.messages = [];
 
     $scope.closeAlert = function (index) {

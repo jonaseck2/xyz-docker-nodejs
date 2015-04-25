@@ -18,9 +18,9 @@
         <div class="form-group">
             <label>Category</label>
             <div class="clearfix">
-                <div class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                        <input type="text" ng-model="skillCategory" ng-required="true" class="form-control"/>
+                <div class="dropdown" dropdown on-toggle="categoryToggled(open)">
+                    <a href="#" tabindex="-1" dropdown-toggle class="dropdown-toggle">
+                        <input type="text" id="categoryInput" ng-model="skillCategory" ng-required="true" class="form-control"/>
                     </a>
                     <ul class="dropdown-menu col-xs-12">
                         <li ng-repeat="skill in allSkills | unique:'category'">
@@ -81,7 +81,7 @@
 <script type="text/javascript" src="js/api-url.js"></script>
 <script type="text/javascript" src="js/skill.js"></script>
 <script type="text/javascript" src="js/angular-resource.min.js"></script>
-<script type="text/javascript" src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+<script type="text/javascript" src="js/ui-bootstrap-tpls-0.12.1.js"></script>
 <script type="text/javascript" src="js/ui-utils.js"></script>
 </body>
 </html>

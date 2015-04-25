@@ -93,6 +93,10 @@ skillApp.controller('SkillController', function ($scope, SkillList) {
         });
     }
 
+    $scope.categoryToggled = function (open) {
+        document.getElementById("categoryInput").focus();
+    }
+
     $scope.messages = [];
 
     $scope.closeAlert = function (index) {
