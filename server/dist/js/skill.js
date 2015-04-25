@@ -73,11 +73,18 @@ skillApp.controller('SkillController', function ($scope, SkillList) {
             { category: "Building Tool", name: "Gradle" },
             { category: "Building Tool", name: "sbt (Simple Build Tool)" },
             { category: "Building Tool", name: "Grunt" },
-            { category: "Continuous Integration", name: "Hudson" },
+            { category: "Continuous Integration", name: "Jenkins" },
             { category: "Continuous Integration", name: "TeamCity" },
             { category: "IDE", name: "Eclipse" },
             { category: "IDE", name: "IntelliJ IDEA" },
-            { category: "IDE", name: "Visual Studio" }
+            { category: "IDE", name: "Visual Studio" },
+            { category: "Version Control", name: "Git" },
+            { category: "Version Control", name: "Mercurial" },
+            { category: "Version Control", name: "Subversion" },
+            { category: "Version Control", name: "Clear case" },
+            { category: "Version Control", name: "CVS" },
+            { category: "Test Framework", name: "JUnit" },
+            { category: "Test Framework", name: "TestNG" }
         ];
 
         SkillList.save(defaultSkills, function () {
