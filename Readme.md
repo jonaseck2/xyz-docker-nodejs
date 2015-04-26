@@ -1,6 +1,7 @@
-# XYZ Docker NodeJS #
+# XYZ Competence #
 
-This image is a default docker image for NodeJS.
+Sets up a NodeJS server hosting a competence web application.
+In this application it is possible to create a list of competencies.
 
 ## Local development ##
 
